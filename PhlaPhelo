@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love 💖</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  background: #ffc0cb;
+  font-family: Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.box{
+  position: relative;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(6px);
+  padding: 35px 25px;
+  border-radius: 30px;
+  width: 90%;
+  max-width: 380px;
+  z-index:2;
+}
+
+h1{font-size:26px}
+p{font-size:17px;line-height:1.8}
+input{
+  width:80%;
+  padding:12px;
+  border:none;
+  border-radius:20px;
+  text-align:center;
+  font-size:16px;
+}
+button{
+  margin-top:15px;
+  padding:12px 40px;
+  border:none;
+  border-radius:25px;
+  background: linear-gradient(90deg,#ff9a9e,#fad0c4);
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* screens */
+.screen{display:none}
+.screen.active{display:block}
+
+/* قلب طالع */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  color:#ff4d6d;
+  font-weight:bold;
+  animation: float 6s linear infinite;
+  opacity:0.8;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(-110vh);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="box screen active" id="login">
+  <h1>💖 Enter Password 💖</h1>
+  <input type="password" id="pass" placeholder="15/6">
+  <br>
+  <button onclick="unlock()">Unlock 💞</button>
+</div>
+
+<!-- SCREEN 1 -->
+<div class="box screen" id="s1">
+  <h1>طمطوم 👀♥</h1>
+  <p>
+  يا اجمل حاجه حصلتلي ف دنيتي  
+  كل عيد حب وانتي الحب الاول والاخير  
+  كل عيد حب وانتي عيدي  
+  كل عيد حب وانتي حبيبتي 🫂❤
+  </p>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="box screen" id="s2">
+  <p>
+  كل يوم انتي معايا فيه هو عيد  
+  كل يوم بشوفك او بسمعك فيه هو عيد 💝
+  </p>
+</div>
+
+<!-- SCREEN 3 -->
+<div class="box screen" id="s3">
+  <p>
+  مكنتش محتاج يوم معين في السنه علشان اعبرلك عن حبي  
+  ولا في يوم مخصوص احبك فيه  
+  انا بحبك كل يوم  
+  المهم ان كل سنه وانتي جنبي وحبيبتي ومعايا  
+  ودي حاجه بسيطة عملتها علي كذا يوم  
+  مخدتش من وقتي ولا مجهود  
+  هي خدت كل مشاعر قلبي  
+  واللي حاسس بيه وظهرتلك  
+  علشان تعبرلك ف الصورة دي  
+  وبس كده يارب تعجبك 👀♥
+  </p>
+</div>
+
+<script>
+function unlock(){
+  if(document.getElementById("pass").value.trim()==="15/6"){
+    document.getElementById("login").classList.remove("active");
+    startLove();
+  }else{
+    alert("الباسورد غلط يا قمر 🥲");
+  }
+}
+
+/* توليد قلوب طمطوم */
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "طمطم";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.fontSize = (15+Math.random()*20)+"px";
+  heart.style.animationDuration = (4+Math.random()*4)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+
+function startLove(){
+  setInterval(createHeart,300); // كل 0.3 ثانية قلب جديد
+
+  const screens = ["s1","s2","s3"];
+  let i=0;
+  showScreen(screens[i]);
+
+  setInterval(()=>{
+    document.getElementById(screens[i]).classList.remove("active");
+    i++;
+    if(i<screens.length){
+      showScreen(screens[i]);
+    }
+  },7000); // كل شاشة 7 ثواني
+}
+
+function showScreen(id){
+  document.getElementById(id).classList.add("active");
+}
+</script>
+
+</body>
+</html>
